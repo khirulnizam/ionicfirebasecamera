@@ -1,0 +1,7 @@
+{
+  "name": "ionicside",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

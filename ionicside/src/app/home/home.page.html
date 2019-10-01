@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Ionic Side
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <app-title></app-title>
+
+  <ion-item>
+    <ion-label>
+      Nama
+    </ion-label>
+    <ion-input [(ngModel)]="nama" placeholder="taip nama anda..."
+      type="text">
+    </ion-input>
+  </ion-item>
+
+  <ion-grid>
+    <ion-row>
+      <!-- button save -->
+      <ion-col>
+        <ion-button (click)="simpannama()" color="success"
+        expand="block">
+          save
+        </ion-button>
+      </ion-col>
+
+      <!-- cari/fetch button -->
+      <ion-col>
+        <ion-button (click)="ambilnama()" color="dark"
+        expand="block">
+          read
+        </ion-button>
+      </ion-col>
+
+      <!-- button delete -->
+      <ion-col>
+        <ion-button (click)="buangnama()" color="danger"
+        expand="block">
+          delete
+        </ion-button>
+      </ion-col>
+
+      
+
+    </ion-row>
+  </ion-grid>
+
+
+    <ion-card class="welcome-card">
+      <img src="/assets/images/logo.png" alt="" />
+      <ion-card-header>
+        <ion-card-subtitle>Get started</ion-card-subtitle>
+        <ion-card-title>Welcome to FSTM</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Now that your app has been created!</p>
+      </ion-card-content>
+    </ion-card>
+    
+    
+</ion-content>
