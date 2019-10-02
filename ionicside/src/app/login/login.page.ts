@@ -18,14 +18,14 @@ export class LoginPage implements OnInit {
   	) { }
 
   ngOnInit() {
-  	//this.fb.checkuser();
+  	//this.fb.checkUser();
   }
 
   ionViewWillEnter(){
   	//disable menu for login page
   	this.menu.enable(false);
   	//check user
-  	this.fb.checkuser()
+  	this.fb.checkUser()
   		.then (res=>{
   			if(res==null || res==undefined){
   				//nothing happen

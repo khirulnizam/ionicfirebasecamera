@@ -5,6 +5,9 @@ import * as firebase from 'firebase';
   providedIn: 'root'
 })
 export class FirebaseService {
+	uid:any;
+	updateFlag=false;
+	selectedData:any={};//to update data
 
   constructor() { }
 
@@ -12,6 +15,8 @@ export class FirebaseService {
   {
     return new Promise((resolve,reject)=>{
       firebase.auth().onAuthStateChanged(res=>{
+      	console.log(res.uid);
+      	this.uid=res.uid;
         resolve(res);
       },err=>{
         reject(err);

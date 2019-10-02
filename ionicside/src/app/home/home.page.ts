@@ -7,6 +7,7 @@ import { Vibration } from '@ionic-native/vibration/ngx';
 
 import { MenuController, NavController} from '@ionic/angular';
 import {FirebaseService} from '../service/firebase.service';
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -16,7 +17,9 @@ export class HomePage {
 
 //declarations
 	nama:any;
-	gambar:any;
+	gambar:any;//variable declaration
+
+  the_list:any=[];//declaring array
 
   constructor(
   	//service to save
@@ -25,23 +28,82 @@ export class HomePage {
     public menu:MenuController,
   	public vibration:Vibration, //for vibration
     public fb:FirebaseService,
-    public nav:NavController
+    public nav:NavController,
+    public alertController:AlertController
   	) 
   {}
 
-  ionViewWillEnter(){
+  ionViewWillEnter(){//will execute auto when page loaded
     //disable menu for login page
     this.menu.enable(true);
-    this.fb.checkuser()
+    this.fb.checkUser()
     .then(res=>{
-      if(res==null || res==undefined)
+      if(res==null || res==undefined)//user takwujud
       {
         //nothing happens
         // this.load=false
         this.nav.navigateBack('login');
       }
+      else{//user wujud
+          this.loadData();
+      }//user wujud
     })
 
+  }
+
+  loadData(){
+    this.fb.readEntry(this.fb.uid)
+        .then(res_list=>{
+          console.log("This is list", res_list);
+          this.the_list=res_list;
+        }, err=>{
+            console.log(err);
+        }
+      )
+  }//end load
+
+  deleteData(key){
+    this.fb.deleteEntry(key,this.fb.uid)
+        .then(_=>{
+          console.log("Delete:", "succesfull");
+          //this.the_list=res_list;
+          alert(this.fb.uid+"Deleted");
+          this.loadData();
+        }, err=>{
+            console.log("ERROR:",err);
+            this.loadData();
+        }
+      )
+  }//delete
+
+  updateData(key,data){
+    this.fb.updateFlag=true;
+    this.fb.selectedData=data;
+    this.nav.navigateForward("createnote");
+  }
+
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      header: 'Confirm!',
+      message: 'Message <strong>text</strong>!!!',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Okay',
+          handler: () => {
+            console.log('Confirm Okay');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   vibrate(){

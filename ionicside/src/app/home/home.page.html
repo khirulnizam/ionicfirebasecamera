@@ -6,10 +6,61 @@
     <ion-title>
       Ionic Side
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/createnote"
+      routerDirection="forward">
+        <ion-icon name="copy" slot="icon-only">
+        </ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
+  <!-- database listing-------->
+  <ion-card *ngFor="let item of the_list" class="ion-padding">
+  
+    <ion-card-title>
+      {{item.val.title}}
+    </ion-card-title>
+    <ion-card-subtitle>
+      {{item.val.zztimestamp | date:'medium'}}
+    </ion-card-subtitle>
+    <ion-card-subtitle>
+      Desc: {{item.val.description}}
+    </ion-card-subtitle>
+    <hr>
+    
+
+    <!-- show read
+      
+        <ion-col>
+          <ion-button color="success" fill="clear">
+            READ
+          </ion-button>
+        </ion-col> -->
+
+        <!-- card footer -->
+      <ion-row>
+        <ion-col>
+          <ion-button color="warning" fill="clear" block="full">
+            UPDATE
+          </ion-button>
+        </ion-col>
+
+        <ion-col>
+          <ion-button color="danger" fill="clear" block="full"
+          (click)="deleteData(item.key)">
+            DELETE
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    
+
+  </ion-card>
+
+
+
   <app-title></app-title>
 
   
@@ -42,7 +93,7 @@
 
 
     <ion-row>
-      
+
       <ion-item>
         <ion-label>
           Nama
