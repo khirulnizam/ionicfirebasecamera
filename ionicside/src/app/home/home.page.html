@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -12,17 +12,45 @@
 <ion-content class="ion-padding">
   <app-title></app-title>
 
-  <ion-item>
-    <ion-label>
-      Nama
-    </ion-label>
-    <ion-input [(ngModel)]="nama" placeholder="taip nama anda..."
-      type="text">
-    </ion-input>
-  </ion-item>
+  
+
+  <div *ngIf="gambar">
+    <img src={{gambar}}>
+  </div>
 
   <ion-grid>
     <ion-row>
+      <!-- button camera -->
+      <ion-col>
+        <ion-button (click)="ambilgambar()" color="warning"
+        expand="block">
+        Tangkap gambar
+           <ion-icon name="camera"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <!-- button camera -->
+      <ion-col>
+        <ion-button (click)="vibrate()" color="secondary"
+        expand="block">
+           <ion-icon name="alert"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+
+
+    <ion-row>
+      
+      <ion-item>
+        <ion-label>
+          Nama
+        </ion-label>
+        <ion-input [(ngModel)]="nama" placeholder="taip nama anda..."
+          type="text">
+        </ion-input>
+      </ion-item>
       <!-- button save -->
       <ion-col>
         <ion-button (click)="simpannama()" color="success"

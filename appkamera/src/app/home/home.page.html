@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-button (click)="ambilgambar()" color="warning"
+        expand="block">
+           <ion-icon name="camera"></ion-icon>
+    </ion-button>
+    
+    <div *ngIf="gambar">
+      <img src={{gambar}}>
+    </div>
+
+    
+</ion-content>

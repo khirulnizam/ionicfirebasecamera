@@ -11,6 +11,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { TitleComponent } from './component/title/title.component';
 //for local storage
 import { IonicStorageModule } from '@ionic/storage';
+import { Camera } from '@ionic-native/camera/ngx';//use camera
+//vibration
+import { Vibration } from '@ionic-native/vibration/ngx';
+
+//firebase
+import * as firebase from 'firebase';
+import { environment } from '../environments/environment';//environment.ts
+firebase.initializeApp(environment.firebaseConfig);
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +32,9 @@ import { IonicStorageModule } from '@ionic/storage';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    Camera,//use camera
+    Vibration //implement vibration
   ],
   bootstrap: [AppComponent]
 })

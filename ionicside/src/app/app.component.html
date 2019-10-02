@@ -16,7 +16,17 @@
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
+
+          <ion-menu-toggle>
+          <ion-button expand="full" color="danger" (click)="logout()"
+          auto-hide="false">
+            logout
+          </ion-button>
+        </ion-menu-toggle>
         </ion-list>
+
+        
+
       </ion-content>
     </ion-menu>
     <ion-router-outlet main></ion-router-outlet>

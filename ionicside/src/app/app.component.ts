@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import {FirebaseService} from './service/firebase.service';
+import {NavController, MenuController} from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +28,10 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private fb:FirebaseService,
+    private nav:NavController,
+    private menu:MenuController
   ) {
     this.initializeApp();
   }
@@ -36,5 +41,12 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  //fungsi logout
+  async logout(){
+    await this.fb.logout();
+    this.menu.close();//disable menu on login.page.html
+    this.nav.navigateBack('login');
   }
 }

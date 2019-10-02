@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-grid>
+
+		<ion-row>
+			<ion-col>
+				<img src="assets/images/lock.jpg">
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+	<ion-card>
+		<ion-item>
+			<ion-input [(ngModel)]="email" 
+			placeholder="Email"
+			type="email">
+			</ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-input [(ngModel)]="password" 
+			placeholder="Password"
+			type="password">
+			</ion-input>
+		</ion-item>
+	</ion-card>
+
+	<ion-button (click)="login()" expand="block" color="success">
+		LOGIN <ion-icon name="unlock">
+		</ion-icon>
+	</ion-button>
+
+</ion-content>
